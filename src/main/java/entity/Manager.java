@@ -8,8 +8,48 @@ public class Manager implements BaseEntity<Long>{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToOne(mappedBy = "manager")
+    String firstName;
+    String lastName;
+    Long nationalId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "branch_id")
     Branch branch;
+
+    public Manager() {
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setNationalId(Long nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Long getNationalId() {
+        return nationalId;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
 
     @Override
     public Long getId() {

@@ -1,5 +1,7 @@
 package entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,19 +10,52 @@ public class Account implements BaseEntity<Long>{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @OneToOne
-    @JoinColumn(name = "card_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "card_id" )
     Card card;
     double balance;
 
-    @ManyToOne
-    @JoinColumn(name = "branch_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     Branch branch;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @ManyToOne(cascade = CascadeType.ALL)
     Customer customer;
 
+
+    public Account() {
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
 
     @Override
     public Long getId() {
