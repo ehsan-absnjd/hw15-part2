@@ -1,28 +1,38 @@
 package entity;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 
 @Entity
 public class Account implements BaseEntity<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "card_id" )
-    Card card;
-    double balance;
+    @OneToOne( cascade = CascadeType.ALL , orphanRemoval = true , mappedBy = "account")
+    private Card card;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    Branch branch;
+    private double balance;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    Customer customer;
+    private Branch branch;
+
+    @ManyToOne(cascade = CascadeType.ALL )
+    private Customer customer;
 
 
     public Account() {
+    }
+
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", card=" + card +
+                ", balance=" + balance +
+                ", branch=" + branch +
+                ", customer=" + customer +
+                '}';
     }
 
     public void setCard(Card card) {

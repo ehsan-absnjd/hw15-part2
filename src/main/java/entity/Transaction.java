@@ -2,23 +2,23 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Entity
 public class Transaction implements BaseEntity<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "source_card_id")
-    Card sourceCard;
+    private Card sourceCard;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "destination_card_id")
-    Card destinationCard;
+    private Card destinationCard;
 
-    double amount;
+    private double amount;
 
-    Date date;
+    private Date date;
 
     public Transaction() {
     }
@@ -63,5 +63,16 @@ public class Transaction implements BaseEntity<Long>{
     @Override
     public void setId(Long id) {
         this.id =id;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", sourceCard=" + sourceCard +
+                ", destinationCard=" + destinationCard +
+                ", amount=" + amount +
+                ", date=" + date +
+                '}';
     }
 }

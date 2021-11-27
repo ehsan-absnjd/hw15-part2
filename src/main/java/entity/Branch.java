@@ -10,20 +10,20 @@ public class Branch implements BaseEntity<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String location;
+    private String location;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "branch")
-    Manager manager;
+    private Manager manager;
 
     @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "branch_id")
-    List<Employee> employees;
+    private List<Employee> employees;
 
     @OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "branch_id")
-    List<Account> accounts;
+    private List<Account> accounts;
 
 
     public Branch() {

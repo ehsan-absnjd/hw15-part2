@@ -9,14 +9,14 @@ import java.util.List;
 public class Customer implements BaseEntity<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long nationalId;
-    String firstName;
-    String lastName;
+    private Long id;
+    private Long nationalId;
+    private String firstName;
+    private String lastName;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
-    List<Account> accounts;
+    private List<Account> accounts;
 
     public Customer() {
     }

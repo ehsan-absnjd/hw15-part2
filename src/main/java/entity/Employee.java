@@ -6,14 +6,14 @@ import javax.persistence.*;
 public class Employee implements BaseEntity<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String firstName;
-    String lastName;
-    Long nationalId;
+    private String firstName;
+    private String lastName;
+    private Long nationalId;
 
     @ManyToOne
-    Branch branch;
+    private Branch branch;
 
     public Employee() {
     }

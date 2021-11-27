@@ -1,6 +1,8 @@
 package entity;
 
+
 import org.hibernate.annotations.Cascade;
+
 
 import javax.persistence.*;
 
@@ -8,16 +10,37 @@ import javax.persistence.*;
 public class Card implements BaseEntity<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL , mappedBy = "card")
-    Account account;
+    private String number;
 
-    String pin;
-    int cvv2;
-    String expireDate;
+    @OneToOne(cascade = CascadeType.PERSIST )
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+
+    private String pin;
+    private int cvv2;
+    private String expireDate;
+    private boolean isActive=true;
 
     public Card() {
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public void setAccount(Account account) {
@@ -60,5 +83,18 @@ public class Card implements BaseEntity<Long>{
     @Override
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", account=" + (account!= null ?account.getId():" ") +
+                ", pin='" + pin + '\'' +
+                ", cvv2=" + cvv2 +
+                ", expireDate='" + expireDate + '\'' +
+                ", isActive=" + isActive +
+                "}";
     }
 }

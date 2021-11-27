@@ -6,15 +6,15 @@ import javax.persistence.*;
 public class Manager implements BaseEntity<Long>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String firstName;
-    String lastName;
-    Long nationalId;
+    private String firstName;
+    private String lastName;
+    private Long nationalId;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "branch_id")
-    Branch branch;
+    private Branch branch;
 
     public Manager() {
     }
